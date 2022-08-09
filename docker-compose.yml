@@ -1,0 +1,16 @@
+version: '3'
+services:
+  gree-hvac-mqtt-bridge:
+    image: gree-hvac-mqtt-bridge-db
+    build: .    
+    environment:
+      - TZ=Europe/Warsaw
+      - HVAC_HOST=192.168.100.10
+      - MQTT_BROKER_URL=mqtt://host.docker.internal
+      - MQTT_TOPIC_PREFIX=home1/room1/greehvac
+      - MQTT_USERNAME=username
+      - MQTT_PASSWORD=password
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
