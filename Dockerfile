@@ -1,5 +1,4 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM alpine:latest
 
 ENV LANG C.UTF-8
 
@@ -9,6 +8,8 @@ npm set unsafe-perm true
 # Copy data for add-on
 WORKDIR /usr/src/app
 COPY . .
-RUN chmod +x run.sh
+RUN npm install
 
-CMD [ "./run.sh" ]
+RUN chmod +x run_standalone.sh
+CMD [ "./run_standalone.sh" ]
+
